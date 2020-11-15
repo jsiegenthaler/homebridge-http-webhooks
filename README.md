@@ -22,6 +22,7 @@ The returned JSON format is:
 
 # Trigger change for boolean accessory
 To trigger a change of a boolean accessory you need to call the url `http://yourHomebridgeServerIp:webhook_port/?accessoryId=theAccessoryIdToTrigger&state=NEWSTATE`
+The new state must be either `true` or `false`, in lower case only.
 
 ## Contact sensor
 For contact sensors the value for `NEWSTATE` is either `true` for contact or `false` for no contact. If `autoRelease` is used, than the state will be released after `autoReleaseTime`, if not set 5 seconds.
@@ -54,16 +55,16 @@ can be changed by calling the url `http://yourHomebridgeServerIp:webhook_port/?a
 # Trigger action
 
 ## Switch
-For switches you can trigger a url of any system for switching the switch on or off.
+For switches you can trigger a url of any system when switching the switch on or off.
 
 ## Push button
-For push buttons you can trigger a url of any system for "pushing the button. The button will be released automatically.
+For push buttons you can trigger a url of any system when pushing the button. The button will be released automatically.
 
 ## Light
-For lights you can trigger a url of any system for switching the light on or off.
+For lights you can trigger a url of any system when switching the light on or off.
 
 ## Outlet
-For outlets you can trigger a url of any system for switching the outlet on or off.
+For outlets you can trigger a url of any system when switching the outlet on or off.
 
 # Update a numeric accessory
 To update a numeric accessory you need to call the url `http://yourHomebridgeServerIp:webhook_port/?accessoryId=theAccessoryIdToUpdate&value=NEWVALUE`
