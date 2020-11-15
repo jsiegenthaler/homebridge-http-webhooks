@@ -52,13 +52,13 @@ HttpWebHookPushButtonAccessory.prototype.changeFromServer = function(urlParams) 
 }
 
 HttpWebHookPushButtonAccessory.prototype.getState = function(callback) {
-  this.log("Getting current state for '%s'...", this.id);
+  this.log.debug("Getting current state for '%s'...", this.id);
   var state = false;
   callback(null, state);
 };
 
 HttpWebHookPushButtonAccessory.prototype.setState = function(powerOn, callback, context) {
-  this.log("Push buttons state change for '%s'...", this.id);
+  this.log.debug("Push buttons state change for '%s'...", this.id);
   if (!powerOn) {
     callback(null);
   }
