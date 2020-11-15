@@ -103,7 +103,7 @@ HttpWebHookWindowCoveringAccessory.prototype.changeFromServer = function(urlPara
 }
 
 HttpWebHookWindowCoveringAccessory.prototype.getTargetPosition = function(callback) {
-  this.log("Getting current Target Position for '%s'...", this.id);
+  this.log.debug("Getting current Target Position for '%s'...", this.id);
   var state = this.storage.getItemSync("http-webhook-target-position-" + this.id);
   if (state === undefined) {
     state = 100;
@@ -112,8 +112,8 @@ HttpWebHookWindowCoveringAccessory.prototype.getTargetPosition = function(callba
 };
 
 HttpWebHookWindowCoveringAccessory.prototype.setTargetPosition = function(newState, callback, context) {
-  this.log("Target Position State for '%s'...", this.id);
-  this.log("new target state is: " + newState);
+  this.log.debug("Target Position State for '%s'...", this.id);
+  this.log.debug("New target state is: " + newState);
   this.storage.setItemSync("http-webhook-target-position-" + this.id, newState);
   if(this.autoSetCurrentPosition) {
     this.storage.setItemSync("http-webhook-current-position-" + this.id, newState);
@@ -178,7 +178,7 @@ HttpWebHookWindowCoveringAccessory.prototype.setTargetPosition = function(newSta
 };
 
 HttpWebHookWindowCoveringAccessory.prototype.getCurrentPosition = function(callback) {
-  this.log("Getting Current Position for '%s'...", this.id);
+  this.log.debug("Getting Current Position for '%s'...", this.id);
   var state = this.storage.getItemSync("http-webhook-current-position-" + this.id);
   if (state === undefined) {
     state = 100;
@@ -187,7 +187,7 @@ HttpWebHookWindowCoveringAccessory.prototype.getCurrentPosition = function(callb
 };
 
 HttpWebHookWindowCoveringAccessory.prototype.getPositionState = function(callback) {
-  this.log("Getting position state for '%s'...", this.id);
+  this.log.debug("Getting position state for '%s'...", this.id);
   var state = this.storage.getItemSync("http-webhook-position-state-" + this.id);
   if (state === undefined) {
     state = Characteristic.PositionState.STOPPED;
