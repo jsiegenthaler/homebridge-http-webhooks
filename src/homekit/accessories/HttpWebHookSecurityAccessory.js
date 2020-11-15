@@ -43,7 +43,7 @@ HttpWebHookSecurityAccessory.prototype.changeFromServer = function(urlParams) {
   if (urlParams.currentstate != null) {
     this.storage.setItemSync("http-webhook-current-security-state-" + this.id, urlParams.currentstate);
     if (cachedCurrentState !== urlParams.currentstate) {
-      this.log("Change current state for security to '%d'.", urlParams.currentstate);
+      this.log.debug("Change current state for security to '%d'.", urlParams.currentstate);
       this.service.getCharacteristic(Characteristic.SecuritySystemCurrentState).updateValue(urlParams.currentstate, undefined, Constants.CONTEXT_FROM_WEBHOOK);
     }
   }
@@ -55,7 +55,7 @@ HttpWebHookSecurityAccessory.prototype.changeFromServer = function(urlParams) {
     }
     this.storage.setItemSync("http-webhook-target-security-state-" + this.id, urlParams.targetstate);
     if (cachedState !== urlParams.targetstate) {
-      this.log("Change target state for security to '%d'.", urlParams.targetstate);
+      this.log.debug("Change target state for security to '%d'.", urlParams.targetstate);
       this.service.getCharacteristic(Characteristic.SecuritySystemTargetState).updateValue(urlParams.targetstate, undefined, Constants.CONTEXT_FROM_WEBHOOK);
     }
   }
@@ -65,7 +65,7 @@ HttpWebHookSecurityAccessory.prototype.changeFromServer = function(urlParams) {
 }
 
 HttpWebHookSecurityAccessory.prototype.getTargetSecurityState = function(callback) {
-  this.log("Getting Target Security state for '%s'...", this.id);
+  this.log.debug("Getting Target Security state for '%s'...", this.id);
   var state = this.storage.getItemSync("http-webhook-target-security-state-" + this.id);
   if (state === undefined) {
     state = Characteristic.SecuritySystemTargetState.DISARM;
@@ -74,7 +74,7 @@ HttpWebHookSecurityAccessory.prototype.getTargetSecurityState = function(callbac
 };
 
 HttpWebHookSecurityAccessory.prototype.setTargetSecurityState = function(newState, callback, context) {
-  this.log("Target Security state for '%s'...", this.id);
+  this.log.debug("Target Security state for '%s'...", this.id);
   this.storage.setItemSync("http-webhook-target-security-state-" + this.id, newState);
   this.storage.setItemSync("http-webhook-current-security-state-" + this.id, newState);
   var urlToCall = this.setStateURL.replace("%d", newState);
@@ -88,7 +88,7 @@ HttpWebHookSecurityAccessory.prototype.setTargetSecurityState = function(newStat
 };
 
 HttpWebHookSecurityAccessory.prototype.getCurrentSecurityState = function(callback) {
-  this.log("Getting Current Security state for '%s'...", this.id);
+  this.log.debug("Getting Current Security state for '%s'...", this.id);
   var state = this.storage.getItemSync("http-webhook-current-security-state-" + this.id);
   if (state === undefined) {
     state = Characteristic.SecuritySystemCurrentState.DISARMED;
