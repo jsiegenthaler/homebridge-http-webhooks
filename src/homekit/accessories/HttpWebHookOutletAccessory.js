@@ -81,7 +81,7 @@ HttpWebHookOutletAccessory.prototype.changeFromServer = function(urlParams) {
 }
 
 HttpWebHookOutletAccessory.prototype.getState = function(callback) {
-  this.log("Getting current state for '%s'...", this.id);
+  this.log.debug("Getting current state for '%s'...", this.id);
   var state = this.storage.getItemSync("http-webhook-" + this.id);
   if (state === undefined) {
     state = false;
@@ -90,7 +90,7 @@ HttpWebHookOutletAccessory.prototype.getState = function(callback) {
 };
 
 HttpWebHookOutletAccessory.prototype.getStateInUse = function(callback) {
-  this.log("Getting current state for '%s'...", this.id);
+  this.log.debug("Getting current state for '%s'...", this.id);
   var stateInUse = this.storage.getItemSync("http-webhook-" + this.id + "-inUse");
   if (stateInUse === undefined) {
     stateInUse = false;
@@ -99,7 +99,7 @@ HttpWebHookOutletAccessory.prototype.getStateInUse = function(callback) {
 };
 
 HttpWebHookOutletAccessory.prototype.setState = function(powerOn, callback, context) {
-  this.log("Switch outlet state for '%s'...", this.id);
+  this.log.debug("Switch outlet state for '%s'...", this.id);
   this.storage.setItemSync("http-webhook-" + this.id, powerOn);
   var urlToCall = this.onURL;
   var urlMethod = this.onMethod;
