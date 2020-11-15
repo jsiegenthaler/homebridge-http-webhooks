@@ -134,7 +134,7 @@ HttpWebHookSensorAccessory.prototype.changeFromServer = function(urlParams) {
 };
 
 HttpWebHookSensorAccessory.prototype.getState = function(callback) {
-  this.log("Getting current state for '%s'...", this.id);
+  this.log.debug("Getting current state for '%s'...", this.id);
   var state = this.storage.getItemSync("http-webhook-" + this.id);
   this.log("State for '%s' is '%s'", this.id, state);
   if (state === undefined) {
