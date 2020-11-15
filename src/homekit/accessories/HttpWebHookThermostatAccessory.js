@@ -90,7 +90,7 @@ HttpWebHookThermostatAccessory.prototype.changeFromServer = function(urlParams) 
 }
 
 HttpWebHookThermostatAccessory.prototype.getTargetTemperature = function(callback) {
-  this.log("Getting target temperature for '%s'...", this.id);
+  this.log.debug("Getting target temperature for '%s'...", this.id);
   var temp = this.storage.getItemSync("http-webhook-target-temperature-" + this.id);
   if (temp === undefined) {
     temp = 20;
@@ -99,7 +99,7 @@ HttpWebHookThermostatAccessory.prototype.getTargetTemperature = function(callbac
 };
 
 HttpWebHookThermostatAccessory.prototype.setTargetTemperature = function(temp, callback, context) {
-  this.log("Target temperature for '%s'...", this.id);
+  this.log.debug("Target temperature for '%s'...", this.id);
   this.storage.setItemSync("http-webhook-target-temperature-" + this.id, temp);
   var urlToCall = this.setTargetTemperatureURL.replace("%f", temp);
   var urlMethod = this.setTargetTemperatureMethod;
@@ -111,7 +111,7 @@ HttpWebHookThermostatAccessory.prototype.setTargetTemperature = function(temp, c
 };
 
 HttpWebHookThermostatAccessory.prototype.getCurrentTemperature = function(callback) {
-  this.log("Getting current temperature for '%s'...", this.id);
+  this.log.debug("Getting current temperature for '%s'...", this.id);
   var temp = this.storage.getItemSync("http-webhook-current-temperature-" + this.id);
   if (temp === undefined) {
     temp = 20;
@@ -120,7 +120,7 @@ HttpWebHookThermostatAccessory.prototype.getCurrentTemperature = function(callba
 };
 
 HttpWebHookThermostatAccessory.prototype.getTargetHeatingCoolingState = function(callback) {
-  this.log("Getting current Target Heating Cooling state for '%s'...", this.id);
+  this.log.debug("Getting current Target Heating Cooling state for '%s'...", this.id);
   var state = this.storage.getItemSync("http-webhook-target-heating-cooling-state-" + this.id);
   if (state === undefined) {
     state = Characteristic.TargetHeatingCoolingState.OFF;
@@ -129,7 +129,7 @@ HttpWebHookThermostatAccessory.prototype.getTargetHeatingCoolingState = function
 };
 
 HttpWebHookThermostatAccessory.prototype.setTargetHeatingCoolingState = function(newState, callback, context) {
-  this.log("Target Heating Cooling state for '%s'...", this.id);
+  this.log.debug("Target Heating Cooling state for '%s'...", this.id);
   this.storage.setItemSync("http-webhook-target-heating-cooling-state-" + this.id, newState);
   var urlToCall = this.setTargetHeatingCoolingStateURL.replace("%b", newState);
   var urlMethod = this.setTargetHeatingCoolingStateMethod;
@@ -141,7 +141,7 @@ HttpWebHookThermostatAccessory.prototype.setTargetHeatingCoolingState = function
 };
 
 HttpWebHookThermostatAccessory.prototype.getCurrentHeatingCoolingState = function(callback) {
-  this.log("Getting current Target Heating Cooling state for '%s'...", this.id);
+  this.log.debug("Getting current Target Heating Cooling state for '%s'...", this.id);
   var state = this.storage.getItemSync("http-webhook-current-heating-cooling-state-" + this.id);
   if (state === undefined) {
     state = Characteristic.CurrentHeatingCoolingState.OFF;
