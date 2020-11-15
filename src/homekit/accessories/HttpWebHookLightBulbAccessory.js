@@ -76,7 +76,7 @@ HttpWebHookLightBulbAccessory.prototype.changeFromServer = function(urlParams) {
 };
 
 HttpWebHookLightBulbAccessory.prototype.getState = function(callback) {
-  this.log("Getting current state for '%s'...", this.id);
+  this.log.debug("Getting current state for '%s'...", this.id);
   var state = this.storage.getItemSync("http-webhook-" + this.id);
   if (state === undefined) {
     state = false;
@@ -85,7 +85,7 @@ HttpWebHookLightBulbAccessory.prototype.getState = function(callback) {
 };
 
 HttpWebHookLightBulbAccessory.prototype.setState = function(powerOn, callback, context) {
-  this.log("Light state for '%s'...", this.id);
+  this.log.debug("Light state for '%s'...", this.id);
   this.storage.setItemSync("http-webhook-" + this.id, powerOn);
   var urlToCall = this.onURL;
   var urlMethod = this.onMethod;
@@ -103,7 +103,7 @@ HttpWebHookLightBulbAccessory.prototype.setState = function(powerOn, callback, c
 };
 
 HttpWebHookLightBulbAccessory.prototype.getBrightness = function(callback) {
-  this.log("Getting current brightness for '%s'...", this.id);
+  this.log.debug("Getting current brightness for '%s'...", this.id);
   var state = this.storage.getItemSync("http-webhook-" + this.id);
   if (state === undefined) {
     state = false;
@@ -119,7 +119,7 @@ HttpWebHookLightBulbAccessory.prototype.getBrightness = function(callback) {
 };
 
 HttpWebHookLightBulbAccessory.prototype.setBrightness = function(brightness, callback, context) {
-  this.log("Light brightness for '%s'...", this.id);
+  this.log.debug("Light brightness for '%s'...", this.id);
   var newState = brightness > 0;
   this.storage.setItemSync("http-webhook-" + this.id, newState);
   this.storage.setItemSync("http-webhook-brightness-" + this.id, brightness);
