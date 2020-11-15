@@ -83,7 +83,7 @@ HttpWebHookGarageDoorOpenerAccessory.prototype.changeFromServer = function(urlPa
 }
 
 HttpWebHookGarageDoorOpenerAccessory.prototype.getTargetDoorState = function(callback) {
-  this.log("Getting current Target Door State for '%s'...", this.id);
+  this.log.debug("Getting current Target Door State for '%s'...", this.id);
   var state = this.storage.getItemSync("http-webhook-target-door-state-" + this.id);
   if (state === undefined) {
     state = Characteristic.TargetDoorState.CLOSED;
@@ -92,7 +92,7 @@ HttpWebHookGarageDoorOpenerAccessory.prototype.getTargetDoorState = function(cal
 };
 
 HttpWebHookGarageDoorOpenerAccessory.prototype.setTargetDoorState = function(newState, callback, context) {
-  this.log("Target Door State for '%s'...", this.id);
+  this.log.debug("Target Door State for '%s'...", this.id);
   this.storage.setItemSync("http-webhook-target-door-state-" + this.id, newState);
 
   var doOpen = newState === Characteristic.TargetDoorState.OPEN;
@@ -117,7 +117,7 @@ HttpWebHookGarageDoorOpenerAccessory.prototype.setTargetDoorState = function(new
 };
 
 HttpWebHookGarageDoorOpenerAccessory.prototype.getCurrentDoorState = function(callback) {
-  this.log("Getting Current Door State for '%s'...", this.id);
+  this.log.debug("Getting Current Door State for '%s'...", this.id);
   var state = this.storage.getItemSync("http-webhook-current-door-state-" + this.id);
   if (state === undefined) {
     state = Characteristic.CurrentDoorState.CLOSED;
@@ -126,7 +126,7 @@ HttpWebHookGarageDoorOpenerAccessory.prototype.getCurrentDoorState = function(ca
 };
 
 HttpWebHookGarageDoorOpenerAccessory.prototype.getObstructionDetected = function(callback) {
-  this.log("Getting Obstruction Detected for '%s'...", this.id);
+  this.log.debug("Getting Obstruction Detected for '%s'...", this.id);
   var state = this.storage.getItemSync("http-webhook-obstruction-detected-" + this.id);
   if (state === undefined) {
     state = false;
