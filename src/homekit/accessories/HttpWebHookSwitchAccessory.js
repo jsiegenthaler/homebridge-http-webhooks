@@ -59,7 +59,7 @@ HttpWebHookSwitchAccessory.prototype.changeFromServer = function(urlParams) {
 }
 
 HttpWebHookSwitchAccessory.prototype.getState = function(callback) {
-  this.log("Getting current state for '%s'...", this.id);
+  this.log.debug("Getting current state for '%s'...", this.id);
   var state = this.storage.getItemSync("http-webhook-" + this.id);
   if (state === undefined) {
     state = false;
@@ -68,7 +68,7 @@ HttpWebHookSwitchAccessory.prototype.getState = function(callback) {
 };
 
 HttpWebHookSwitchAccessory.prototype.setState = function(powerOn, callback, context) {
-  this.log("Switch state for '%s'...", this.id);
+  this.log.debug("Switch state for '%s'...", this.id);
   this.storage.setItemSync("http-webhook-" + this.id, powerOn);
   var urlToCall = this.onURL;
   var urlMethod = this.onMethod;
